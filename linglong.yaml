@@ -1,0 +1,29 @@
+version: "1"
+
+package:
+
+  id: io.github.PixelMaestro-Studio
+  name: PixelMaestro-Studio
+  version: 0.0.60.2
+  kind: app
+  description: |
+    Qt-based desktop application for PixelMaestro.
+
+command:
+  - /opt/apps/io.github.PixelMaestro-Studio/files/bin/PixelMaestro_Studio
+
+base: org.deepin.foundation/23.0.0
+runtime: org.deepin.Runtime/23.0.1
+
+sources:
+  - kind: git
+    url: https://github.com/8bitbuddhist/PixelMaestro-Studio.git
+    version: master
+    commit: 346ebfef157678aa326ecd8848d97e68f129ef07
+
+build: |
+  cd /project/linglong/sources/PixelMaestro-Studio.git
+  git apply ../../../0001-install.patch
+  qmake -makefile PREFIX=${PREFIX} LIB_INSTALL_DIR=${PREFIX}/lib/${TRIPLET}
+  make -j$(nproc)
+  make install
