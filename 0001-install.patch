@@ -1,0 +1,68 @@
+From 8553bc0a1b9050f07034af8dd165cbc4a9bf2c74 Mon Sep 17 00:00:00 2001
+From: wjyrich <1071633242@qq.com>
+Date: Fri, 23 Aug 2024 12:09:43 +0800
+Subject: [PATCH] install
+
+---
+ PixelMaestro-Studio.pro         |  5 ++---
+ src/PixelMaestro_Studio.desktop | 11 +++++++++++
+ src/src.pro                     |  7 +++++++
+ 3 files changed, 20 insertions(+), 3 deletions(-)
+ create mode 100644 src/PixelMaestro_Studio.desktop
+
+diff --git a/PixelMaestro-Studio.pro b/PixelMaestro-Studio.pro
+index 043c8a1..c5c6012 100644
+--- a/PixelMaestro-Studio.pro
++++ b/PixelMaestro-Studio.pro
+@@ -1,11 +1,10 @@
+ TEMPLATE	= subdirs
+ CONFIG		+= ordered
+-SUBDIRS		= src tests
++SUBDIRS		= src 
+ 
+ # When compiling for Windows, don't compile tests
+ win32 {
+ SUBDIRS -= tests
+ }
+ 
+-app.depends		= src
+-test.depends	= tests
++app.depends		= src
+\ No newline at end of file
+diff --git a/src/PixelMaestro_Studio.desktop b/src/PixelMaestro_Studio.desktop
+new file mode 100644
+index 0000000..b006f63
+--- /dev/null
++++ b/src/PixelMaestro_Studio.desktop
+@@ -0,0 +1,11 @@
++[Desktop Entry]
++Categories=Accessibility;Qt;Utility;
++Exec=PixelMaestro_Studio
++Name=PixelMaestro_Studio
++Name[zh_CN]=PixelMaestro_Studio
++Icon=mandelbrot
++StartupNotify=false
++Terminal=false
++Type=Application
++GenericName=PixelMaestro_Studio
++Version=0.60
+\ No newline at end of file
+diff --git a/src/src.pro b/src/src.pro
+index f107ed0..2a2dc9c 100644
+--- a/src/src.pro
++++ b/src/src.pro
+@@ -186,3 +186,10 @@ $$PWD/../lib/PixelMaestro/src
+ 
+ RESOURCES += resources/images/images.qrc \
+ resources/fonts/fonts.qrc
++target.path = $$PREFIX/bin
++desktop.files = PixelMaestro_Studio.desktop
++desktop.path = $$PREFIX/share/applications/
++icons.path = $$PREFIX/share/icons
++icons.files = resources/images/animations/mandelbrot.png
++
++INSTALLS += target desktop icons
+\ No newline at end of file
+-- 
+2.43.4
+
